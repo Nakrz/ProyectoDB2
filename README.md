@@ -1,6 +1,9 @@
 # UNIVERSIDAD
 
-![Texto alternativo](./DER02.png)
+
+
+
+
 
 
 
@@ -113,211 +116,216 @@
 
   # Consultas multitabla (Composición interna)
 
-  1. Devuelve un listado con los datos de todas las alumnas que se han
+  1. Devuelve un listado con los datos de todas las alumnas que se han matriculado alguna vez en el Grado en Ingeniería Informática (Plan 2015).
 
-    matriculado alguna vez en el Grado en Ingeniería Informática (Plan 2015).
-    
-    ```sql
-    SELECT a.id AS id_alumno, a.nif, a.nombre, a.apellido1, a.apellido2
-    FROM alumno a
-    JOIN alumno_se_matricula_asignatura am ON a.id = am.id_alumno
-    JOIN asignatura asi ON am.id_asignatura = asi.id
-    JOIN grado g ON asi.id_grado = g.id
-    WHERE a.sexo = 'M'
-    AND g.nombre = 'Ingeniería Informática (Plan 2015)';
-    
-    +-----------+-----------+--------+------------+------------+
-    | id_alumno | nif       | nombre | apellido1  | apellido2  |
-    +-----------+-----------+--------+------------+------------+
-    |         1 | 12345678A | María  | González   | López      |
-    |         1 | 12345678A | María  | González   | López      |
-    |         3 | 34567890C | Laura  | Pérez      | García     |
-    |         3 | 34567890C | Laura  | Pérez      | García     |
-    |         3 | 34567890C | Laura  | Pérez      | García     |
-    |         5 | 56789012E | Ana    | Fernández  | Rodríguez  |
-    |         5 | 56789012E | Ana    | Fernández  | Rodríguez  |
-    |         5 | 56789012E | Ana    | Fernández  | Rodríguez  |
-    |         7 | 78901234G | Sara   | García     | Hernández  |
-    |         7 | 78901234G | Sara   | García     | Hernández  |
-    |         7 | 78901234G | Sara   | García     | Hernández  |
-    |         9 | 90123456I | Elena  | Hernández  | Sánchez    |
-    |         9 | 90123456I | Elena  | Hernández  | Sánchez    |
-    |         9 | 90123456I | Elena  | Hernández  | Sánchez    |
-    |        11 | 11223344K | Luisa  | Pérez      | González   |
-    |        11 | 11223344K | Luisa  | Pérez      | González   |
-    |        11 | 11223344K | Luisa  | Pérez      | González   |
-    |        13 | 33445566M | Carmen | Martínez   | Gómez      |
-    |        13 | 33445566M | Carmen | Martínez   | Gómez      |
-    |        13 | 33445566M | Carmen | Martínez   | Gómez      |
-    +-----------+-----------+--------+------------+------------+
-    ```
+```sql
 
+SELECT a.id AS id_alumno, a.nif, a.nombre, a.apellido1, a.apellido2
+FROM alumno a
+JOIN alumno_se_matricula_asignatura am ON a.id = am.id_alumno
+JOIN asignatura asi ON am.id_asignatura = asi.id
+JOIN grado g ON asi.id_grado = g.id
+WHERE a.sexo = 'M'
+AND g.nombre = 'Ingeniería Informática (Plan 2015)';
 
-​    
++-----------+-----------+--------+------------+------------+
+| id_alumno | nif       | nombre | apellido1  | apellido2  |
++-----------+-----------+--------+------------+------------+
+|         1 | 12345678A | María  | González   | López      |
+|         1 | 12345678A | María  | González   | López      |
+|         3 | 34567890C | Laura  | Pérez      | García     |
+|         3 | 34567890C | Laura  | Pérez      | García     |
+|         3 | 34567890C | Laura  | Pérez      | García     |
+|         5 | 56789012E | Ana    | Fernández  | Rodríguez  |
+|         5 | 56789012E | Ana    | Fernández  | Rodríguez  |
+|         5 | 56789012E | Ana    | Fernández  | Rodríguez  |
+|         7 | 78901234G | Sara   | García     | Hernández  |
+|         7 | 78901234G | Sara   | García     | Hernández  |
+|         7 | 78901234G | Sara   | García     | Hernández  |
+|         9 | 90123456I | Elena  | Hernández  | Sánchez    |
+|         9 | 90123456I | Elena  | Hernández  | Sánchez    |
+|         9 | 90123456I | Elena  | Hernández  | Sánchez    |
+|        11 | 11223344K | Luisa  | Pérez      | González   |
+|        11 | 11223344K | Luisa  | Pérez      | González   |
+|        11 | 11223344K | Luisa  | Pérez      | González   |
+|        13 | 33445566M | Carmen | Martínez   | Gómez      |
+|        13 | 33445566M | Carmen | Martínez   | Gómez      |
+|        13 | 33445566M | Carmen | Martínez   | Gómez      |
++-----------+-----------+--------+------------+------------+
 
-  2. Devuelve un listado con todas las asignaturas ofertadas en el Grado en
-
-    Ingeniería Informática (Plan 2015).
-    
-    ```sql
-    SELECT a.id AS id_asignatura, a.nombre AS nombre_asignatura
-    FROM asignatura a
-    JOIN grado g ON a.id_grado = g.id
-    WHERE g.nombre = 'Ingeniería Informática (Plan 2015)';
-    
-    +---------------+-----------------------+
-    | id_asignatura | nombre_asignatura     |
-    +---------------+-----------------------+
-    |             1 | Matemáticas I         |
-    |             2 | Física I              |
-    |             4 | Inglés I              |
-    |             5 | Historia del Arte I   |
-    |             6 | Programación I        |
-    |             7 | Cálculo II            |
-    |             8 | Física II             |
-    |             9 | Química II            |
-    |            10 | Inglés II             |
-    |            11 | Historia del Arte II  |
-    |            12 | Programación II       |
-    |            13 | Matemáticas III       |
-    |            14 | Física III            |
-    |            15 | Química III           |
-    |            16 | Inglés III            |
-    |            17 | Historia del Arte III |
-    |            18 | Programación III      |
-    |            19 | Matemáticas IV        |
-    |            20 | Física IV             |
-    |            21 | Química IV            |
-    |            22 | Inglés IV             |
-    |            23 | Historia del Arte IV  |
-    |            24 | Programación IV       |
-    |            25 | Matemáticas V         |
-    |            26 | Física V              |
-    |            27 | Química V             |
-    |            28 | Inglés V              |
-    |            29 | Historia del Arte V   |
-    |            30 | Programación V        |
-    |            31 | Matemáticas VI        |
-    |            32 | Física VI             |
-    |            33 | Química VI            |
-    |            34 | Inglés VI             |
-    |            35 | Historia del Arte VI  |
-    |            36 | Programación VI       |
-    |            37 | Matemáticas VII       |
-    |            38 | Física VII            |
-    |            39 | Química VII           |
-    |            40 | Inglés VII            |
-    |            41 | Historia del Arte VII |
-    |            42 | Programación VII      |
-    +---------------+-----------------------+
-    
-    ```
+```
 
 
 ​    
 
-  3. Devuelve un listado de los profesores junto con el nombre del
+  2. Devuelve un listado con todas las asignaturas ofertadas en el Grado en Ingeniería Informática (Plan 2015).
 
-    departamento al que están vinculados. El listado debe devolver cuatro
-    columnas, primer apellido, segundo apellido, nombre y nombre del
-    departamento. El resultado estará ordenado alfabéticamente de menor a
-    mayor por los apellidos y el nombre.
-    
-    ```sql
-    SELECT p.apellido1, p.apellido2, p.nombre, d.nombre AS nombre_departamento
-    FROM profesor p
-    JOIN departamento d ON p.id_departamento = d.id
-    ORDER BY p.apellido1, p.apellido2, p.nombre;
-    
-    +------------+------------+--------+---------------------------------------------+
-    | apellido1  | apellido2  | nombre | nombre_departamento                         |
-    +------------+------------+--------+---------------------------------------------+
-    | García     | Fernández  | Ana    | Departamento de Economía                    |
-    | García     | Pérez      | Juan   | Departamento de Matemáticas                 |
-    | Hernández  | Sánchez    | Laura  | Departamento de Lenguas                     |
-    | López      | Martínez   | Carlos | Departamento de Arte                        |
-    | Martín     | Gómez      | Javier | Departamento de Ciencias de la Computación  |
-    | Martínez   | López      | María  | Departamento de Historia                    |
-    | Pérez      | Rodríguez  | Elena  | Departamento de Física                      |
-    | Rodríguez  | González   | Pedro  | Departamento de Ciencias Naturales          |
-    +------------+------------+--------+---------------------------------------------+
-    ```
+```sql
 
+SELECT a.id AS id_asignatura, a.nombre AS nombre_asignatura
+FROM asignatura a
+JOIN grado g ON a.id_grado = g.id
+WHERE g.nombre = 'Ingeniería Informática (Plan 2015)';
 
-​    
++---------------+-----------------------+
+| id_asignatura | nombre_asignatura     |
++---------------+-----------------------+
+|             1 | Matemáticas I         |
+|             2 | Física I              |
+|             4 | Inglés I              |
+|             5 | Historia del Arte I   |
+|             6 | Programación I        |
+|             7 | Cálculo II            |
+|             8 | Física II             |
+|             9 | Química II            |
+|            10 | Inglés II             |
+|            11 | Historia del Arte II  |
+|            12 | Programación II       |
+|            13 | Matemáticas III       |
+|            14 | Física III            |
+|            15 | Química III           |
+|            16 | Inglés III            |
+|            17 | Historia del Arte III |
+|            18 | Programación III      |
+|            19 | Matemáticas IV        |
+|            20 | Física IV             |
+|            21 | Química IV            |
+|            22 | Inglés IV             |
+|            23 | Historia del Arte IV  |
+|            24 | Programación IV       |
+|            25 | Matemáticas V         |
+|            26 | Física V              |
+|            27 | Química V             |
+|            28 | Inglés V              |
+|            29 | Historia del Arte V   |
+|            30 | Programación V        |
+|            31 | Matemáticas VI        |
+|            32 | Física VI             |
+|            33 | Química VI            |
+|            34 | Inglés VI             |
+|            35 | Historia del Arte VI  |
+|            36 | Programación VI       |
+|            37 | Matemáticas VII       |
+|            38 | Física VII            |
+|            39 | Química VII           |
+|            40 | Inglés VII            |
+|            41 | Historia del Arte VII |
+|            42 | Programación VII      |
++---------------+-----------------------+
 
-  4. Devuelve un listado con el nombre de las asignaturas, año de inicio y año de
-
-    fin del curso escolar del alumno con nif 26902806M.
-    
-    ```sql
-    SELECT a.nombre AS nombre_asignatura, c.anyo_inicio, c.anyo_fin
-    FROM alumno_se_matricula_asignatura as am
-    JOIN asignatura as a ON am.id_asignatura = a.id
-    JOIN curso_escolar as c ON am.id_curso_escolar = c.id
-    JOIN alumno as al ON am.id_alumno = al.id
-    WHERE al.nif = '26902806M';
-    
-    +----------------------+-------------+----------+
-    | nombre_asignatura    | anyo_inicio | anyo_fin |
-    +----------------------+-------------+----------+
-    | Inglés VI            |        2013 |     2014 |
-    | Historia del Arte VI |        2013 |     2014 |
-    | Programación VI      |        2013 |     2014 |
-    +----------------------+-------------+----------+
-    ```
-
-
-​    
-
-  5. Devuelve un listado con el nombre de todos los departamentos que tienen
-
-    profesores que imparten alguna asignatura en el Grado en Ingeniería
-    Informática (Plan 2015).
-    
-    ```sql
-    SELECT DISTINCT d.nombre AS nombre_departamento
-    FROM departamento AS d
-    JOIN profesor AS p ON d.id = p.id_departamento
-    JOIN asignatura AS a ON p.id = a.id_profesor
-    JOIN grado AS g ON a.id_grado = g.id
-    WHERE g.nombre LIKE '%Ingeniería Informática (Plan 2015)%';
-    
-    +---------------------------------------------+
-    | nombre_departamento                         |
-    +---------------------------------------------+
-    | Departamento de Matemáticas                 |
-    | Departamento de Ciencias Naturales          |
-    | Departamento de Lenguas                     |
-    | Departamento de Arte                        |
-    | Departamento de Economía                    |
-    | Departamento de Física                      |
-    | Departamento de Historia                    |
-    | Departamento de Ciencias de la Computación  |
-    +---------------------------------------------+
-    ```
+```
 
 
 ​    
 
-  6. Devuelve un listado con todos los alumnos que se han matriculado en
+  3. Devuelve un listado de los profesores junto con el nombre del 
 
-    alguna asignatura durante el curso escolar 2018/2019.
-    
-    ```sql
-    SELECT DISTINCT a.nombre, a.apellido1, a.apellido2
-    FROM alumno AS a
-    JOIN alumno_se_matricula_asignatura as mat ON a.id = mat.id_alumno
-    JOIN curso_escolar as c ON mat.id_curso_escolar = c.id
-    WHERE c.anyo_inicio = 2018 AND c.anyo_fin = 2019;
-    
-    +--------+------------+------------+
-    | nombre | apellido1  | apellido2  |
-    +--------+------------+------------+
-    | Juan   | Martínez   | Hernández  |
-    | Ana    | Fernández  | Rodríguez  |
-    +--------+------------+------------+
-    ```
+     departamento al que están vinculados. El listado debe devolver cuatro
+     columnas, primer apellido, segundo apellido, nombre y nombre del
+     departamento. El resultado estará ordenado alfabéticamente de menor a
+     mayor por los apellidos y el nombre.
+
+```sql
+
+
+SELECT p.apellido1, p.apellido2, p.nombre, d.nombre AS nombre_departamento
+FROM profesor p
+JOIN departamento d ON p.id_departamento = d.id
+ORDER BY p.apellido1, p.apellido2, p.nombre;
+
++------------+------------+--------+---------------------------------------------+
+| apellido1  | apellido2  | nombre | nombre_departamento                         |
++------------+------------+--------+---------------------------------------------+
+| García     | Fernández  | Ana    | Departamento de Economía                    |
+| García     | Pérez      | Juan   | Departamento de Matemáticas                 |
+| Hernández  | Sánchez    | Laura  | Departamento de Lenguas                     |
+| López      | Martínez   | Carlos | Departamento de Arte                        |
+| Martín     | Gómez      | Javier | Departamento de Ciencias de la Computación  |
+| Martínez   | López      | María  | Departamento de Historia                    |
+| Pérez      | Rodríguez  | Elena  | Departamento de Física                      |
+| Rodríguez  | González   | Pedro  | Departamento de Ciencias Naturales          |
++------------+------------+--------+---------------------------------------------+
+
+```
+
+
+​    
+
+  4. Devuelve un listado con el nombre de las asignaturas, año de inicio y año de fin del curso escolar del alumno con nif 26902806M.
+
+```sql
+
+SELECT a.nombre AS nombre_asignatura, c.anyo_inicio, c.anyo_fin
+FROM alumno_se_matricula_asignatura as am
+JOIN asignatura as a ON am.id_asignatura = a.id
+JOIN curso_escolar as c ON am.id_curso_escolar = c.id
+JOIN alumno as al ON am.id_alumno = al.id
+WHERE al.nif = '26902806M';
+
++----------------------+-------------+----------+
+| nombre_asignatura    | anyo_inicio | anyo_fin |
++----------------------+-------------+----------+
+| Inglés VI            |        2013 |     2014 |
+| Historia del Arte VI |        2013 |     2014 |
+| Programación VI      |        2013 |     2014 |
++----------------------+-------------+----------+
+
+```
+
+
+​    
+
+  5. Devuelve un listado con el nombre de todos los departamentos que tienen 
+
+     profesores que imparten alguna asignatura en el Grado en Ingeniería
+     Informática (Plan 2015).
+
+```sql
+
+
+SELECT DISTINCT d.nombre AS nombre_departamento
+FROM departamento AS d
+JOIN profesor AS p ON d.id = p.id_departamento
+JOIN asignatura AS a ON p.id = a.id_profesor
+JOIN grado AS g ON a.id_grado = g.id
+WHERE g.nombre LIKE '%Ingeniería Informática (Plan 2015)%';
+
++---------------------------------------------+
+| nombre_departamento                         |
++---------------------------------------------+
+| Departamento de Matemáticas                 |
+| Departamento de Ciencias Naturales          |
+| Departamento de Lenguas                     |
+| Departamento de Arte                        |
+| Departamento de Economía                    |
+| Departamento de Física                      |
+| Departamento de Historia                    |
+| Departamento de Ciencias de la Computación  |
++---------------------------------------------+
+
+```
+
+
+​    
+
+  6. Devuelve un listado con todos los alumnos que se han matriculado en alguna asignatura durante el curso escolar 2018/2019.
+
+```sql
+
+SELECT DISTINCT a.nombre, a.apellido1, a.apellido2
+FROM alumno AS a
+JOIN alumno_se_matricula_asignatura as mat ON a.id = mat.id_alumno
+JOIN curso_escolar as c ON mat.id_curso_escolar = c.id
+WHERE c.anyo_inicio = 2018 AND c.anyo_fin = 2019;
+
++--------+------------+------------+
+| nombre | apellido1  | apellido2  |
++--------+------------+------------+
+| Juan   | Martínez   | Hernández  |
+| Ana    | Fernández  | Rodríguez  |
++--------+------------+------------+
+
+```
 
 
 ​    
@@ -478,15 +486,15 @@ Resuelva todas las consultas utilizando las cláusulas LEFT JOIN y RIGHT JOIN.
 
      
 
-  3. Calcula cuántos profesores hay en cada departamento. El resultado sólo
+  3. Calcula cuántos profesores hay en cada departamento. El resultado sólo 
 
-~~~sql
-debe mostrar dos columnas, una con el nombre del departamento y otra
-con el número de profesores que hay en ese departamento. El resultado
-sólo debe incluir los departamentos que tienen profesores asociados y
-deberá estar ordenado de mayor a menor por el número de profesores.
+     debe mostrar dos columnas, una con el nombre del departamento y otra
+     con el número de profesores que hay en ese departamento. El resultado
+     sólo debe incluir los departamentos que tienen profesores asociados y
+     deberá estar ordenado de mayor a menor por el número de profesores.
 
 ```sql
+
 SELECT d.nombre AS 'nombre del Departamento', COUNT(p.id) AS 'numero de Profesores'
 FROM departamento as d
 JOIN profesor as p ON d.id = p.id_departamento
@@ -504,20 +512,20 @@ ORDER BY COUNT(p.id) DESC;
 | Departamento de Arte                        |                     1 |
 | Departamento de Ciencias de la Computación  |                     1 |
 +---------------------------------------------+-----------------------+
+
 ```
-~~~
 
 
 ​    
 
-  4. Devuelve un listado con todos los departamentos y el número de profesores
+  4. Devuelve un listado con todos los departamentos y el número de profesores 
 
-~~~sql
-que hay en cada uno de ellos. Tenga en cuenta que pueden existir
-departamentos que no tienen profesores asociados. Estos departamentos
-también tienen que aparecer en el listado.
+     que hay en cada uno de ellos. Tenga en cuenta que pueden existir
+     departamentos que no tienen profesores asociados. Estos departamentos
+     también tienen que aparecer en el listado.
 
 ```sql
+
 SELECT d.nombre AS 'nombre del Departamento', COUNT(p.id) AS 'numero de Profesores'
 FROM departamento as d
 LEFT JOIN profesor as p ON d.id = p.id_departamento
@@ -535,23 +543,19 @@ GROUP BY d.nombre;
 | Departamento de Ciencias de la Computación  |                    1 |
 | Departamento de Física                      |                    2 |
 +---------------------------------------------+----------------------+
-~~~
-
-
-​    
-    ```
+```
 
 
 ​    
 
   5. Devuelve un listado con el nombre de todos los grados existentes en la base
 
-~~~sql
-de datos y el número de asignaturas que tiene cada uno. Tenga en cuenta que pueden existir grados que no tienen asignaturas asociadas. Estos grados
-también tienen que aparecer en el listado. El resultado deberá estar
-ordenado de mayor a menor por el número de asignaturas.
+     de datos y el número de asignaturas que tiene cada uno. Tenga en cuenta que pueden existir grados que no tienen asignaturas asociadas. Estos grados
+     también tienen que aparecer en el listado. El resultado deberá estar
+     ordenado de mayor a menor por el número de asignaturas.
 
 ```sql
+
 SELECT g.nombre AS 'nombre del Grado', COUNT(a.id) AS 'numero de Asignaturas'
 FROM grado as g
 LEFT JOIN asignatura as a ON g.id = a.id_grado
@@ -572,19 +576,20 @@ ORDER BY COUNT(a.id) DESC;
 | Filosofía (Plan 2019)                |                     0 |
 | Matemáticas (Plan 2013)              |                     0 |
 +--------------------------------------+-----------------------+
+
 ```
-~~~
 
 
 ​    
 
-  6. Devuelve un listado con el nombre de todos los grados existentes en la base
+  6. Devuelve un listado con el nombre de todos los grados existentes en la base 
 
-~~~sql
-de datos y el número de asignaturas que tiene cada uno, de los grados que
-tengan más de 40 asignaturas asociadas.
+     de datos y el número de asignaturas que tiene cada uno, de los grados que
+     tengan más de 40 asignaturas asociadas.
 
 ```sql
+
+
 SELECT g.nombre AS 'Nombre del Grado', COUNT(a.id) AS 'numero de Asignaturas'
 FROM grado as g
 JOIN asignatura as a ON g.id = a.id_grado
@@ -597,21 +602,21 @@ ORDER BY COUNT(a.id) DESC;
 +--------------------------------------+-----------------------+
 | Ingeniería Informática (Plan 2015)   |                    41 |
 +--------------------------------------+-----------------------+
+
 ```
-~~~
 
 
 ​    
 
-  7. Devuelve un listado que muestre el nombre de los grados y la suma del
+  7. Devuelve un listado que muestre el nombre de los grados y la suma del 
 
-~~~sql
-número total de créditos que hay para cada tipo de asignatura. El resultado
-debe tener tres columnas: nombre del grado, tipo de asignatura y la suma
-de los créditos de todas las asignaturas que hay de ese tipo. Ordene el
-resultado de mayor a menor por el número total de crédidos.
+     número total de créditos que hay para cada tipo de asignatura. El resultado
+     debe tener tres columnas: nombre del grado, tipo de asignatura y la suma
+     de los créditos de todas las asignaturas que hay de ese tipo. Ordene el
+     resultado de mayor a menor por el número total de crédidos.
 
 ```sql
+
 SELECT g.nombre AS 'nombre grado', t.nombre AS 'tipo asignatura', SUM(a.creditos) AS 'suma de creditos'
 FROM grado as g
 JOIN asignatura as a ON g.id = a.id_grado
@@ -627,20 +632,20 @@ ORDER BY SUM(a.creditos) DESC;
 | Ingeniería Informática (Plan 2015)   | Obligatoria     |               42 |
 | Derecho (Plan 2013)                  | Básica          |                6 |
 +--------------------------------------+-----------------+------------------+
+
 ```
-~~~
 
 
 ​    
 
-  8. Devuelve un listado que muestre cuántos alumnos se han matriculado de
+  8. Devuelve un listado que muestre cuántos alumnos se han matriculado de 
 
-~~~sql
-alguna asignatura en cada uno de los cursos escolares. El resultado deberá
-mostrar dos columnas, una columna con el año de inicio del curso escolar y
-otra con el número de alumnos matriculados.
+     alguna asignatura en cada uno de los cursos escolares. El resultado deberá
+     mostrar dos columnas, una columna con el año de inicio del curso escolar y
+     otra con el número de alumnos matriculados.
 
 ```sql
+
 SELECT ce.anyo_inicio AS 'año inicio', COUNT(DISTINCT am.id_alumno) AS 'numero alumnos'
 FROM curso_escolar as ce
 LEFT JOIN alumno_se_matricula_asignatura as am ON ce.id = am.id_curso_escolar
@@ -658,18 +663,18 @@ ORDER BY ce.anyo_inicio;
 |        2018 |              2 |
 |        2019 |              1 |
 +-------------+----------------+
+
 ```
-~~~
 
 
 ​    
 
   9. Devuelve un listado con el número de asignaturas que imparte cada
 
-    profesor. El listado debe tener en cuenta aquellos profesores que no
-    imparten ninguna asignatura. El resultado mostrará cinco columnas: id,
-    nombre, primer apellido, segundo apellido y número de asignaturas. El
-    resultado estará ordenado de mayor a menor por el número de asignaturas.
+     profesor. El listado debe tener en cuenta aquellos profesores que no
+     imparten ninguna asignatura. El resultado mostrará cinco columnas: id,
+     nombre, primer apellido, segundo apellido y número de asignaturas. El
+     resultado estará ordenado de mayor a menor por el número de asignaturas.
 
 ```sql
 SELECT p.id, p.nombre, p.apellido1, p.apellido2, COUNT(a.id) AS 'asignaturas'
