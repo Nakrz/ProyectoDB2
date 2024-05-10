@@ -10,8 +10,8 @@
 # Consultas sobre una tabla
 
 1. Devuelve un listado con el primer apellido, segundo apellido y el nombre de
-  todos los alumnos. El listado deberá estar ordenado alfabéticamente de
-  menor a mayor por el primer apellido, segundo apellido y nombre.
+    todos los alumnos. El listado deberá estar ordenado alfabéticamente de
+    menor a mayor por el primer apellido, segundo apellido y nombre.
 
   ```sql
   SELECT apellido1, apellido2, nombre
@@ -42,7 +42,7 @@
   
 
 2. Averigua el nombre y los dos apellidos de los alumnos que no han dado de
-  alta su número de teléfono en la base de datos.
+    alta su número de teléfono en la base de datos.
 
   ```sql
   SELECT a.nombre, a.apellido1, a.apellido2
@@ -76,7 +76,7 @@
    
 
 4. Devuelve el listado de profesores que no han dado de alta su número de
-  teléfono en la base de datos y además su nif termina en K
+    teléfono en la base de datos y además su nif termina en K
 
   ```sql
   SELECT nombre, apellido1, apellido2, nif
@@ -94,7 +94,7 @@
   
 
 5. Devuelve el listado de las asignaturas que se imparten en el primer
-  cuatrimestre, en el tercer curso del grado que tiene el identificador 7.
+    cuatrimestre, en el tercer curso del grado que tiene el identificador 7.
 
   ```sql
   SELECT id, nombre
@@ -114,8 +114,9 @@
   # Consultas multitabla (Composición interna)
 
   1. Devuelve un listado con los datos de todas las alumnas que se han
-    matriculado alguna vez en el Grado en Ingeniería Informática (Plan 2015).
 
+    matriculado alguna vez en el Grado en Ingeniería Informática (Plan 2015).
+    
     ```sql
     SELECT a.id AS id_alumno, a.nif, a.nombre, a.apellido1, a.apellido2
     FROM alumno a
@@ -151,11 +152,13 @@
     +-----------+-----------+--------+------------+------------+
     ```
 
-    
+
+​    
 
   2. Devuelve un listado con todas las asignaturas ofertadas en el Grado en
-    Ingeniería Informática (Plan 2015).
 
+    Ingeniería Informática (Plan 2015).
+    
     ```sql
     SELECT a.id AS id_asignatura, a.nombre AS nombre_asignatura
     FROM asignatura a
@@ -210,14 +213,16 @@
     
     ```
 
-    
+
+​    
 
   3. Devuelve un listado de los profesores junto con el nombre del
+
     departamento al que están vinculados. El listado debe devolver cuatro
     columnas, primer apellido, segundo apellido, nombre y nombre del
     departamento. El resultado estará ordenado alfabéticamente de menor a
     mayor por los apellidos y el nombre.
-
+    
     ```sql
     SELECT p.apellido1, p.apellido2, p.nombre, d.nombre AS nombre_departamento
     FROM profesor p
@@ -238,11 +243,13 @@
     +------------+------------+--------+---------------------------------------------+
     ```
 
-    
+
+​    
 
   4. Devuelve un listado con el nombre de las asignaturas, año de inicio y año de
-    fin del curso escolar del alumno con nif 26902806M.
 
+    fin del curso escolar del alumno con nif 26902806M.
+    
     ```sql
     SELECT a.nombre AS nombre_asignatura, c.anyo_inicio, c.anyo_fin
     FROM alumno_se_matricula_asignatura as am
@@ -260,12 +267,14 @@
     +----------------------+-------------+----------+
     ```
 
-    
+
+​    
 
   5. Devuelve un listado con el nombre de todos los departamentos que tienen
+
     profesores que imparten alguna asignatura en el Grado en Ingeniería
     Informática (Plan 2015).
-
+    
     ```sql
     SELECT DISTINCT d.nombre AS nombre_departamento
     FROM departamento AS d
@@ -288,11 +297,13 @@
     +---------------------------------------------+
     ```
 
-    
+
+​    
 
   6. Devuelve un listado con todos los alumnos que se han matriculado en
-    alguna asignatura durante el curso escolar 2018/2019.
 
+    alguna asignatura durante el curso escolar 2018/2019.
+    
     ```sql
     SELECT DISTINCT a.nombre, a.apellido1, a.apellido2
     FROM alumno AS a
@@ -308,19 +319,20 @@
     +--------+------------+------------+
     ```
 
-    
+
+​    
 
 # Consultas multitabla (Composición externa)
 
 Resuelva todas las consultas utilizando las cláusulas LEFT JOIN y RIGHT JOIN.
 
 1. Devuelve un listado con los nombres de todos los profesores y los
-  departamentos que tienen vinculados. El listado también debe mostrar
-  aquellos profesores que no tienen ningún departamento asociado. El listado
-  debe devolver cuatro columnas, nombre del departamento, primer apellido,
-  segundo apellido y nombre del profesor. El resultado estará ordenado
-  alfabéticamente de menor a mayor por el nombre del departamento,
-  apellidos y el nombre.
+    departamentos que tienen vinculados. El listado también debe mostrar
+    aquellos profesores que no tienen ningún departamento asociado. El listado
+    debe devolver cuatro columnas, nombre del departamento, primer apellido,
+    segundo apellido y nombre del profesor. El resultado estará ordenado
+    alfabéticamente de menor a mayor por el nombre del departamento,
+    apellidos y el nombre.
 
   ```sql
   SELECT d.nombre AS nombre_departamento, p.apellido1, p.apellido2, p.nombre
@@ -352,7 +364,7 @@ Resuelva todas las consultas utilizando las cláusulas LEFT JOIN y RIGHT JOIN.
   
 
 2. Devuelve un listado con los profesores que no están asociados a un
-  departamento.
+    departamento.
 
   ```sql
   SELECT p.apellido1, p.apellido2, p.nombre
@@ -372,7 +384,7 @@ Resuelva todas las consultas utilizando las cláusulas LEFT JOIN y RIGHT JOIN.
   
 
 3. Devuelve un listado con los departamentos que no tienen profesores
-  asociados.
+    asociados.
 
   ```sql
   SELECT d.nombre AS nombre_departamento
@@ -415,9 +427,9 @@ Resuelva todas las consultas utilizando las cláusulas LEFT JOIN y RIGHT JOIN.
    
 
 6. Devuelve un listado con todos los departamentos que tienen alguna
-  asignatura que no se haya impartido en ningún curso escolar. El resultado
-  debe mostrar el nombre del departamento y el nombre de la asignatura que
-  no se haya impartido nunca.
+    asignatura que no se haya impartido en ningún curso escolar. El resultado
+    debe mostrar el nombre del departamento y el nombre de la asignatura que
+    no se haya impartido nunca.
 
   ```sql
   SELECT a.nombre AS nombre_asignatura
@@ -467,167 +479,193 @@ Resuelva todas las consultas utilizando las cláusulas LEFT JOIN y RIGHT JOIN.
      
 
   3. Calcula cuántos profesores hay en cada departamento. El resultado sólo
-    debe mostrar dos columnas, una con el nombre del departamento y otra
-    con el número de profesores que hay en ese departamento. El resultado
-    sólo debe incluir los departamentos que tienen profesores asociados y
-    deberá estar ordenado de mayor a menor por el número de profesores.
 
-    ```sql
-    SELECT d.nombre AS 'nombre del Departamento', COUNT(p.id) AS 'numero de Profesores'
-    FROM departamento as d
-    JOIN profesor as p ON d.id = p.id_departamento
-    GROUP BY d.nombre
-    ORDER BY COUNT(p.id) DESC;
-    
-    +---------------------------------------------+-----------------------+
-    | nombre del Departamento                     | numero de Profesores  |
-    +---------------------------------------------+-----------------------+
-    | Departamento de Lenguas                     |                     3 |
-    | Departamento de Matemáticas                 |                     2 |
-    | Departamento de Historia                    |                     2 |
-    | Departamento de Ciencias Naturales          |                     2 |
-    | Departamento de Física                      |                     2 |
-    | Departamento de Arte                        |                     1 |
-    | Departamento de Ciencias de la Computación  |                     1 |
-    +---------------------------------------------+-----------------------+
-    ```
+~~~sql
+debe mostrar dos columnas, una con el nombre del departamento y otra
+con el número de profesores que hay en ese departamento. El resultado
+sólo debe incluir los departamentos que tienen profesores asociados y
+deberá estar ordenado de mayor a menor por el número de profesores.
 
-    
+```sql
+SELECT d.nombre AS 'nombre del Departamento', COUNT(p.id) AS 'numero de Profesores'
+FROM departamento as d
+JOIN profesor as p ON d.id = p.id_departamento
+GROUP BY d.nombre
+ORDER BY COUNT(p.id) DESC;
+
++---------------------------------------------+-----------------------+
+| nombre del Departamento                     | numero de Profesores  |
++---------------------------------------------+-----------------------+
+| Departamento de Lenguas                     |                     3 |
+| Departamento de Matemáticas                 |                     2 |
+| Departamento de Historia                    |                     2 |
+| Departamento de Ciencias Naturales          |                     2 |
+| Departamento de Física                      |                     2 |
+| Departamento de Arte                        |                     1 |
+| Departamento de Ciencias de la Computación  |                     1 |
++---------------------------------------------+-----------------------+
+```
+~~~
+
+
+​    
 
   4. Devuelve un listado con todos los departamentos y el número de profesores
-    que hay en cada uno de ellos. Tenga en cuenta que pueden existir
-    departamentos que no tienen profesores asociados. Estos departamentos
-    también tienen que aparecer en el listado.
 
-    ```sql
-    SELECT d.nombre AS 'nombre del Departamento', COUNT(p.id) AS 'numero de Profesores'
-    FROM departamento as d
-    LEFT JOIN profesor as p ON d.id = p.id_departamento
-    GROUP BY d.nombre;
-    
-    +---------------------------------------------+----------------------+
-    | nombre del Departamento                     | numero de Profesores |
-    +---------------------------------------------+----------------------+
-    | Departamento de Matemáticas                 |                    2 |
-    | Departamento de Historia                    |                    2 |
-    | Departamento de Ciencias Naturales          |                    2 |
-    | Departamento de Lenguas                     |                    3 |
-    | Departamento de Arte                        |                    1 |
-    | Departamento de Economía                    |                    0 |
-    | Departamento de Ciencias de la Computación  |                    1 |
-    | Departamento de Física                      |                    2 |
-    +---------------------------------------------+----------------------+
-    
-    
+~~~sql
+que hay en cada uno de ellos. Tenga en cuenta que pueden existir
+departamentos que no tienen profesores asociados. Estos departamentos
+también tienen que aparecer en el listado.
+
+```sql
+SELECT d.nombre AS 'nombre del Departamento', COUNT(p.id) AS 'numero de Profesores'
+FROM departamento as d
+LEFT JOIN profesor as p ON d.id = p.id_departamento
+GROUP BY d.nombre;
+
++---------------------------------------------+----------------------+
+| nombre del Departamento                     | numero de Profesores |
++---------------------------------------------+----------------------+
+| Departamento de Matemáticas                 |                    2 |
+| Departamento de Historia                    |                    2 |
+| Departamento de Ciencias Naturales          |                    2 |
+| Departamento de Lenguas                     |                    3 |
+| Departamento de Arte                        |                    1 |
+| Departamento de Economía                    |                    0 |
+| Departamento de Ciencias de la Computación  |                    1 |
+| Departamento de Física                      |                    2 |
++---------------------------------------------+----------------------+
+~~~
+
+
+​    
     ```
 
-    
+
+​    
 
   5. Devuelve un listado con el nombre de todos los grados existentes en la base
-    de datos y el número de asignaturas que tiene cada uno. Tenga en cuenta que pueden existir grados que no tienen asignaturas asociadas. Estos grados
-    también tienen que aparecer en el listado. El resultado deberá estar
-    ordenado de mayor a menor por el número de asignaturas.
 
-    ```sql
-    SELECT g.nombre AS 'nombre del Grado', COUNT(a.id) AS 'numero de Asignaturas'
-    FROM grado as g
-    LEFT JOIN asignatura as a ON g.id = a.id_grado
-    GROUP BY g.nombre
-    ORDER BY COUNT(a.id) DESC;
-    
-    +--------------------------------------+-----------------------+
-    | nombre del Grado                     | numero de Asignaturas |
-    +--------------------------------------+-----------------------+
-    | Ingeniería Informática (Plan 2015)   |                    41 |
-    | Derecho (Plan 2013)                  |                     1 |
-    | Medicina (Plan 2015)                 |                     0 |
-    | Arquitectura (Plan 2011)             |                     0 |
-    | Biología (Plan 2016)                 |                     0 |
-    | Economía (Plan 2017)                 |                     0 |
-    | Psicología (Plan 2015)               |                     0 |
-    | Comunicación (Plan 2014)             |                     0 |
-    | Filosofía (Plan 2019)                |                     0 |
-    | Matemáticas (Plan 2013)              |                     0 |
-    +--------------------------------------+-----------------------+
-    ```
+~~~sql
+de datos y el número de asignaturas que tiene cada uno. Tenga en cuenta que pueden existir grados que no tienen asignaturas asociadas. Estos grados
+también tienen que aparecer en el listado. El resultado deberá estar
+ordenado de mayor a menor por el número de asignaturas.
 
-    
+```sql
+SELECT g.nombre AS 'nombre del Grado', COUNT(a.id) AS 'numero de Asignaturas'
+FROM grado as g
+LEFT JOIN asignatura as a ON g.id = a.id_grado
+GROUP BY g.nombre
+ORDER BY COUNT(a.id) DESC;
+
++--------------------------------------+-----------------------+
+| nombre del Grado                     | numero de Asignaturas |
++--------------------------------------+-----------------------+
+| Ingeniería Informática (Plan 2015)   |                    41 |
+| Derecho (Plan 2013)                  |                     1 |
+| Medicina (Plan 2015)                 |                     0 |
+| Arquitectura (Plan 2011)             |                     0 |
+| Biología (Plan 2016)                 |                     0 |
+| Economía (Plan 2017)                 |                     0 |
+| Psicología (Plan 2015)               |                     0 |
+| Comunicación (Plan 2014)             |                     0 |
+| Filosofía (Plan 2019)                |                     0 |
+| Matemáticas (Plan 2013)              |                     0 |
++--------------------------------------+-----------------------+
+```
+~~~
+
+
+​    
 
   6. Devuelve un listado con el nombre de todos los grados existentes en la base
-    de datos y el número de asignaturas que tiene cada uno, de los grados que
-    tengan más de 40 asignaturas asociadas.
 
-    ```sql
-    SELECT g.nombre AS 'Nombre del Grado', COUNT(a.id) AS 'numero de Asignaturas'
-    FROM grado as g
-    JOIN asignatura as a ON g.id = a.id_grado
-    GROUP BY g.nombre
-    HAVING COUNT(a.id) > 40
-    ORDER BY COUNT(a.id) DESC;
-    
-    +--------------------------------------+-----------------------+
-    | Nombre del Grado                     | numero de Asignaturas |
-    +--------------------------------------+-----------------------+
-    | Ingeniería Informática (Plan 2015)   |                    41 |
-    +--------------------------------------+-----------------------+
-    ```
+~~~sql
+de datos y el número de asignaturas que tiene cada uno, de los grados que
+tengan más de 40 asignaturas asociadas.
 
-    
+```sql
+SELECT g.nombre AS 'Nombre del Grado', COUNT(a.id) AS 'numero de Asignaturas'
+FROM grado as g
+JOIN asignatura as a ON g.id = a.id_grado
+GROUP BY g.nombre
+HAVING COUNT(a.id) > 40
+ORDER BY COUNT(a.id) DESC;
+
++--------------------------------------+-----------------------+
+| Nombre del Grado                     | numero de Asignaturas |
++--------------------------------------+-----------------------+
+| Ingeniería Informática (Plan 2015)   |                    41 |
++--------------------------------------+-----------------------+
+```
+~~~
+
+
+​    
 
   7. Devuelve un listado que muestre el nombre de los grados y la suma del
-    número total de créditos que hay para cada tipo de asignatura. El resultado
-    debe tener tres columnas: nombre del grado, tipo de asignatura y la suma
-    de los créditos de todas las asignaturas que hay de ese tipo. Ordene el
-    resultado de mayor a menor por el número total de crédidos.
 
-    ```sql
-    SELECT g.nombre AS 'nombre grado', t.nombre AS 'tipo asignatura', SUM(a.creditos) AS 'suma de creditos'
-    FROM grado as g
-    JOIN asignatura as a ON g.id = a.id_grado
-    JOIN tipo_asignatura as t ON a.tipo_asignatura_id = t.id
-    GROUP BY g.nombre, t.nombre
-    ORDER BY SUM(a.creditos) DESC;
-    
-    +--------------------------------------+-----------------+------------------+
-    | nombre grado                         | tipo asignatura | suma de creditos |
-    +--------------------------------------+-----------------+------------------+
-    | Ingeniería Informática (Plan 2015)   | Básica          |              162 |
-    | Ingeniería Informática (Plan 2015)   | Optativa        |               42 |
-    | Ingeniería Informática (Plan 2015)   | Obligatoria     |               42 |
-    | Derecho (Plan 2013)                  | Básica          |                6 |
-    +--------------------------------------+-----------------+------------------+
-    ```
+~~~sql
+número total de créditos que hay para cada tipo de asignatura. El resultado
+debe tener tres columnas: nombre del grado, tipo de asignatura y la suma
+de los créditos de todas las asignaturas que hay de ese tipo. Ordene el
+resultado de mayor a menor por el número total de crédidos.
 
-    
+```sql
+SELECT g.nombre AS 'nombre grado', t.nombre AS 'tipo asignatura', SUM(a.creditos) AS 'suma de creditos'
+FROM grado as g
+JOIN asignatura as a ON g.id = a.id_grado
+JOIN tipo_asignatura as t ON a.tipo_asignatura_id = t.id
+GROUP BY g.nombre, t.nombre
+ORDER BY SUM(a.creditos) DESC;
+
++--------------------------------------+-----------------+------------------+
+| nombre grado                         | tipo asignatura | suma de creditos |
++--------------------------------------+-----------------+------------------+
+| Ingeniería Informática (Plan 2015)   | Básica          |              162 |
+| Ingeniería Informática (Plan 2015)   | Optativa        |               42 |
+| Ingeniería Informática (Plan 2015)   | Obligatoria     |               42 |
+| Derecho (Plan 2013)                  | Básica          |                6 |
++--------------------------------------+-----------------+------------------+
+```
+~~~
+
+
+​    
 
   8. Devuelve un listado que muestre cuántos alumnos se han matriculado de
-    alguna asignatura en cada uno de los cursos escolares. El resultado deberá
-    mostrar dos columnas, una columna con el año de inicio del curso escolar y
-    otra con el número de alumnos matriculados.
 
-    ```sql
-    SELECT ce.anyo_inicio AS 'año inicio', COUNT(DISTINCT am.id_alumno) AS 'numero alumnos'
-    FROM curso_escolar as ce
-    LEFT JOIN alumno_se_matricula_asignatura as am ON ce.id = am.id_curso_escolar
-    GROUP BY ce.anyo_inicio
-    ORDER BY ce.anyo_inicio;
-    
-    +-------------+----------------+
-    | año inicio  | numero alumnos |
-    +-------------+----------------+
-    |        2013 |             13 |
-    |        2014 |              0 |
-    |        2015 |              0 |
-    |        2016 |              0 |
-    |        2017 |              0 |
-    |        2018 |              2 |
-    |        2019 |              1 |
-    +-------------+----------------+
-    ```
+~~~sql
+alguna asignatura en cada uno de los cursos escolares. El resultado deberá
+mostrar dos columnas, una columna con el año de inicio del curso escolar y
+otra con el número de alumnos matriculados.
 
-    
+```sql
+SELECT ce.anyo_inicio AS 'año inicio', COUNT(DISTINCT am.id_alumno) AS 'numero alumnos'
+FROM curso_escolar as ce
+LEFT JOIN alumno_se_matricula_asignatura as am ON ce.id = am.id_curso_escolar
+GROUP BY ce.anyo_inicio
+ORDER BY ce.anyo_inicio;
+
++-------------+----------------+
+| año inicio  | numero alumnos |
++-------------+----------------+
+|        2013 |             13 |
+|        2014 |              0 |
+|        2015 |              0 |
+|        2016 |              0 |
+|        2017 |              0 |
+|        2018 |              2 |
+|        2019 |              1 |
++-------------+----------------+
+```
+~~~
+
+
+​    
 
   9. Devuelve un listado con el número de asignaturas que imparte cada
+
     profesor. El listado debe tener en cuenta aquellos profesores que no
     imparten ninguna asignatura. El resultado mostrará cinco columnas: id,
     nombre, primer apellido, segundo apellido y número de asignaturas. El
@@ -681,7 +719,7 @@ ORDER BY COUNT(a.id) DESC;
    
 
 2. Devuelve un listado con los profesores que no están asociados a un
-  departamento.
+    departamento.
 
   ```sql
   SELECT p.id, p.nif, p.nombre, p.apellido1, p.apellido2, p.id_ciudad, p.id_direccion, p.telefono_id, p.fecha_nacimiento, p.sexo
@@ -700,7 +738,7 @@ ORDER BY COUNT(a.id) DESC;
   
 
 3. Devuelve un listado con los departamentos que no tienen profesores
-  asociados.
+    asociados.
 
   ```sql
   SELECT id, nombre
@@ -721,7 +759,7 @@ ORDER BY COUNT(a.id) DESC;
   
 
 4. Devuelve un listado con los profesores que tienen un departamento
-  asociado y que no imparten ninguna asignatura.
+    asociado y que no imparten ninguna asignatura.
 
   ```sql
   SELECT p.id, p.nombre, p.apellido1, p.apellido2,
@@ -756,7 +794,7 @@ ORDER BY COUNT(a.id) DESC;
    
 
 6. Devuelve un listado con todos los departamentos que no han impartido
-  asignaturas en ningún curso escolar.
+    asignaturas en ningún curso escolar.
 
   ```sql
   SELECT id, nombre
